@@ -1,0 +1,62 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+string barang[10] = {"B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "B10"};
+int stok[10] = {20, 40, 8, 7, 6, 9, 10, 12, 15, 20};
+
+void cetak(){
+    cout << "NOMOR KODE PRODUK" << " " << "KODE PRODUK" << endl;
+    for(int i=0; i<10; i++){
+        cout << i << " " << barang[i] << endl;
+    }
+}
+
+void otomatis(int kode, int jumlah){
+    cout << "Produk Kode " << kode << " memiliki sisa stok sejumlah " << jumlah << endl;
+}
+
+void isiBarang(int angka, int tambah){
+    stok[angka]+=tambah;
+    otomatis(angka, stok[angka]);
+}
+
+void ambilBarang(int angka, int ambil){
+    stok[angka]-=ambil;
+    otomatis(angka, stok[angka]);
+}
+
+signed main(){
+    int minimalStok = 5;
+    cout << "SELAMAT DATANG DI DATABASE PRODUK" << endl;
+    cout << "Proses apa yang akan Anda lakukan?" << endl;
+    cout << "[1] Lakukan pengisian stok barang" << endl;
+    cout << "[2] Lakukan pengambilan barang" << endl;
+    cout << "[3] Lakukan pengecekan stok" << endl;
+    int input, kode, jumlah;
+    cin >> input;
+    if (input==1){
+        cetak();
+        cout << "Masukkan nomor kode produk: ";
+        cin >> kode;
+        cout << "Jumlah pengisian: ";
+        cin >> jumlah;
+        isiBarang(kode, jumlah);
+    }
+    else if(input==2){
+        cetak();
+        cout << "Masukkan kode produk: ";
+        cin >> kode;
+        cout << "Jumlah pengambilan: ";
+        cin >> jumlah;
+        if(stok[kode]<5){
+        cout << "Stok produk tidak memenuhi batas minimal stok produk. Produk tidak dapat diambil dengan jumlah " << jumlah << endl;
+        }
+        else {
+            ambilBarang(kode, jumlah);   
+        }
+    }
+    else if(input==3){
+        cetak();
+    }
+
+}
